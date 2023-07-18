@@ -9,7 +9,7 @@ A weather app powered by ReactJS using two weather APIs, [open weather map](http
 
 - [x] Analyze the JSON files from OWM and OM.
     - Data that that I need are: temp (min and max), apparent temp, weather code, precipitation probability, wind speed, UV-index, sunrise/sunset, day/night, and time 
-- [x] [Draw up the UI of the weather display data](). 
+- [x] [Draw up the UI of the weather display data](https://github.com/urostripunovic/weather-app/blob/main/public/Weather-App-UI.jpg). 
 - [ ] Create functions that divide up the data.
     - [ ] Current weather
     - [ ] Weather by the hour
