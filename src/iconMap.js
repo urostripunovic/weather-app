@@ -1,7 +1,7 @@
 export const ICON_MAP = new Map();
 export const dayOrNightCodes = [0, 1, 51, 53, 56, 61, 66, 80];
 
-addMapping([0], "sun"); //01d
+addMapping([0], ""); //01d
 addMapping([1], "cloudy"); //02d
 addMapping([2], "cloud"); //03d 
 addMapping([3], "cloud-overcast"); //04d
