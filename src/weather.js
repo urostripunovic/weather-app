@@ -4,27 +4,28 @@ import { ICON_MAP, dayOrNightCodes } from "./iconMap";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const OWM_URL = import.meta.env.VITE_OPEN_WEATHER_MAP_URL;
 const OM_URL = import.meta.env.VITE_OPEN_METEO_URL;
-//const city = "Malmö"
+//const city = "malmö"
+const GEO_URL = import.meta.env.VITE_GEO_URL;
+const API_KEY_GEO = import.meta.env.VITE_API_KEY_GEO_DB;
 
-export async function getWeather(city) {
+export async function getCity(city) {
     try {
         const response_OWM = await axios.get(`${OWM_URL}`, {
             params: {
                 q: city,
                 APPID: API_KEY,
             },
-        });
+        }).catch(() => console.log("ett fel har uppståt"))
         const { data } = response_OWM;
-        const weatherForecast = await getForecast(data);
-        //console.log("getWeather function: ", data)
-        return weatherForecast;
+        return data;
     } catch (error) {
+        //alert("There is no forecast for this city try another");
         throw new Error("Something went wrong with finding the city");
     }
 }
 
-async function getForecast(data_OMW) {
-    const { lon, lat } = data_OMW.coord;
+export async function getForecast(data_OWM) {
+    const { lon, lat } = data_OWM.coord;
     try {
         const response_OM = await axios.get(`${OM_URL}`, {
             params: {
@@ -33,18 +34,18 @@ async function getForecast(data_OMW) {
             },
         });
         const { data } = response_OM;
-        console.log("getForecast function ", data)
+        //console.log("getForecast function ", data)
         return {
-            current: parseCurrentWeather(data, data_OMW),
+            current: parseCurrentWeather(data, data_OWM),
             hourly: parseHourlyWeather(data),
-            //daily: parseDailyWeather(data),
+            daily: parseDailyWeather(data),
         };
     } catch (error) {
         throw new Error("Something went wrong with the coordinates");
     }
 }
 
-function parseCurrentWeather({ current_weather, daily, hourly }, data_OMW) {
+function parseCurrentWeather({ current_weather, daily, hourly }, data_OWM) {
     const {
         is_day,
         temperature,
@@ -65,9 +66,9 @@ function parseCurrentWeather({ current_weather, daily, hourly }, data_OMW) {
     } = daily;
 
     return {
-        name: data_OMW.name,
-        description: data_OMW.weather[0].main,
-        humidity: data_OMW.main.humidity,
+        name: data_OWM.name,
+        description: data_OWM.weather[0].main,
+        humidity: data_OWM.main.humidity,
         iconCode: parseIcon(weathercode, is_day),
         UV: parseUvIndex(currUv),
         currentTemp: Math.round(temperature),
@@ -90,15 +91,14 @@ function parseHourlyWeather({ current_weather, hourly }) {
         precipitation_probability,
     } = hourly;
 
-    const next24HoursData = time
-        .map((time, index) => {
-            return {
-                time: parseTime(time * 1000),
-                iconCode: parseIcon(weathercode[index], is_day[index]),
-                temp: Math.round(temperature_2m[index]),
-                prob: Math.round(precipitation_probability[index])
-            }
-        })
+    const next24HoursData = time.map((time, index) => {
+        return {
+            time: parseTime(time * 1000),
+            iconCode: parseIcon(weathercode[index], is_day[index]),
+            temp: Math.round(temperature_2m[index]),
+            prob: Math.round(precipitation_probability[index])
+        }
+    })
 
     const currentWeatherTime = parseTime(current_weather.time * 1000);
     const cutOffIndex = next24HoursData.findIndex(index => index.time === currentWeatherTime);
@@ -106,8 +106,26 @@ function parseHourlyWeather({ current_weather, hourly }) {
 
 }
 
-function parseDailyWeather({ current_weather, daily }) {
+function parseDailyWeather({ daily }) {
 
+    const {
+        precipitation_probability_max,
+        weathercode,
+        temperature_2m_max,
+        temperature_2m_min,
+    } = daily;
+
+    //const dates = parseDay(daily.time);
+
+    return daily.time.map((time, index) => {
+        return {
+            time: parseDay(time * 1000),
+            prob: precipitation_probability_max[index],
+            iconCode: parseIcon(weathercode[index]),
+            day: Math.round(temperature_2m_max[index]),
+            night: Math.round(temperature_2m_min[index]),
+        }
+    })
 }
 
 function parseTime(time) {
@@ -115,9 +133,15 @@ function parseTime(time) {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) //GPT Brah
 }
 
+function parseDay(time) {
+    //const dates = times.map(time => new Date(time*1000).toLocaleDateString("en-US", { weekday: "long" }));
+    //dates[0] = "Today"; //unavoidable hard coding
+    const date = new Date(time);
+    return date.toLocaleDateString("en-US", { weekday: "long" });
+}
+
 function parseIcon(iconCode, is_day) {
-    if (dayOrNightCodes.includes(iconCode))
-        return ICON_MAP.get(iconCode) + (is_day === 1 ? "-sun" : "-moon");
+    if (dayOrNightCodes.includes(iconCode)) return ICON_MAP.get(iconCode) + (is_day === 1 ? "-sun" : "-moon");
 
     return ICON_MAP.get(iconCode);
 }
