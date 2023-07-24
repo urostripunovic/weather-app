@@ -6,16 +6,21 @@ import LoadingScreen from "./LoadingScreen";
 import { getCity, getForecast } from "./weather";
 import "./App.css";
 
-function App() {
+const App = () => {
 
   const [data, setData] = useState(null);
+
   const [isLoading, setLoading] = useState(false);
   const [isFetched, setFetched] = useState(false);
+
   const [cityError, setError] = useState(null);
   const [movedUp, setMovedUp] = useState(false);
 
   const handleSearch = async (city) => {
     const name = city.label.split(',')[0];
+
+    if (data && (data.current.name === name)) return;
+
     try {
       setLoading(true);
 
@@ -24,9 +29,8 @@ function App() {
       setFetched(true);
       setData(forecast_data);
       setMovedUp(true);
-      //console.log(forecast_data, data, isFetched);
     } catch (err) {
-      setFetched(false);
+      setFetched(false); 
       setError(true)
       console.log(err)
     } finally {
