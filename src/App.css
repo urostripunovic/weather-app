@@ -1,1 +1,30 @@
+.parent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.container {
+    margin: 20px auto;
+    position: absolute;
+    max-width: 800px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.container.moved-up {
+    position: fixed;
+    top: 60px;
+    opacity: 0.8;
+}
+
+.content {
+    margin: 20px auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
