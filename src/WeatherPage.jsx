@@ -1,5 +1,5 @@
 import React from 'react'
-import "./WeahterPage.css";
+import "./WeatherPage.css";
 
 const WeatherPage = ({ data }) => {
     // Your WeatherPage component logic here
@@ -7,7 +7,7 @@ const WeatherPage = ({ data }) => {
     console.log(data)
 
     return (
-        <div>WeahterPage</div>
+        <div>WeatherPage</div>
     );
 };
 

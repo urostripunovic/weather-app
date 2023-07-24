@@ -21,11 +21,14 @@ export default function Search({ onSearchChange }) {
                     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
                 },
             });
-            const options = response.data.data.map(value => {
+            const res = response.data.data.map(value => {
                 return {
                     label: `${value.name}, ${value.countryCode}`,
                 };
             })
+            const removedDuplicated = [...new Set(res.map(option => option.label))];
+            const options = Array.from(removedDuplicated, value => ({ label: value }));
+            
             return { options }
         } catch (error) {
             console.error(error);

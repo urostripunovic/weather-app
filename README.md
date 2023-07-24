@@ -33,3 +33,4 @@ A weather app powered by ReactJS using two weather APIs, [Open Weather Map](http
 
 #### BUGS
 - Tried to add a cool transtion for everytime someone wants to search up the forecast but whenever I do there is this small bug of the search bar going up to the top and doesn't have a fixed position after it has transitioned to the top. **[This linked helped with solving the issue](https://thoughtbot.com/blog/positioning#position) instead of using margins as the article suggest I instead opted to use `transform: translateX(-50%);` but this introduced a new bug of other contents being confined to a smaller space, I found [this](https://stackoverflow.com/questions/41033245/does-position-absolute-conflict-with-flexbox) which solved the issue**
+- Duplicate names in the search bar. **Solved by removing them, how? Well create a set from the values and then just remove the ones with already existing names.**
