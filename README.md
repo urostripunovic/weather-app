@@ -4,7 +4,6 @@ A weather app powered by ReactJS using two weather APIs, [Open Weather Map](http
 
 ### [Link to the weather app]()
 
-
 ### TODO
 
 - [x] Analyze the JSON files from OWM and OM.
