@@ -25,6 +25,9 @@
 .content {
     margin: 20px auto;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /*left: 50%;
+    transform: translateX(-50%);*/
 }

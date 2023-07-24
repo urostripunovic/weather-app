@@ -6,6 +6,6 @@ export default function LoadingScreen() {
 
     return (
         //Ändra color så att den är beroende av dag eller natt
-        <ReactLoading className='' type={"spin"} height={'64px'} width={'64px'} />
+        <ReactLoading type={"spin"} height={'64px'} width={'64px'} />
     )
 }
