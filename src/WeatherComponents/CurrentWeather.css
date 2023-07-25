@@ -1,0 +1,74 @@
+.curr-border {
+    padding: 10px 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 6px;
+    color: #fff;
+    margin-bottom: 20px;
+    cursor: default;
+}
+
+.image-night {
+    background-image: url("/forecast/night.jpg");
+}
+
+.image-cloudySky {
+    background-image: url("/forecast/cloudySky.jpg");
+    background-position: 55% 50%;
+}
+
+.image-clouds {
+    background-image: url("/forecast/clouds.jpg");
+    background-position: 50% 55%;
+}
+
+.image-day {
+    background-image: url("/forecast/day.jpg");
+    background-position: 50% 15%;
+}
+
+.image-smog {
+    background-image: url("/forecast/smog.jpg");
+    background-position: 50% 15%;
+}
+
+.curr-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+.currentTemp {
+    line-height: 1;
+    font-size: 6rem;
+    text-shadow: 0 0 5px rgba(23, 36, 50, .5);
+    font-weight: 500;
+}
+
+.picture {
+    height: 8rem;
+    filter: drop-shadow(0 0 5px rgba(23, 36, 50, .5));
+}
+
+.desc {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-shadow: 0 0 5px rgba(23, 36, 50, .5);
+}
+
+.city-name {
+    margin-top: 5px;
+    font-size: 1.25rem;
+    text-shadow: 0 0 5px rgba(23, 36, 50, .5);
+}
+
+.day-night {
+    font-size: 1.5rem;
+    margin-top: 5px;
+    line-height: 1.1;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(23,36,50,.5);
+}

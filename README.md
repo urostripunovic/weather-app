@@ -18,9 +18,14 @@ A weather app powered by ReactJS using two weather APIs, [Open Weather Map](http
 - [x] Create a loading function
 - [x] Create an error handler
 - [ ] Create WeatherPage component
-    - [ ] CurrentWeather component
+    - [x] CurrentWeather component
+        - add images representing the clouds. One for a clear sky, kinda cloudy sky, cloudy sky and night sky. **more images could be added but I've understood how to solve this kind of problem in the future.**
     - [ ] HourlyWeather component
+        - Create a "carousel" so that people are able to drag it to the left and right to see the comming 24hours.
     - [ ] DailyWeather component
+        - Just a small table of value showing, the weekly forecast.
+    - [ ] CurrentOtherStuff component
+        - Showing the uv index and such.
 - [x] LandingPage component (could just be a search button idk yet)
     - [x] Lets one choose their current gps location or has a "auto" complete feature with every city that exists.
         - I used something called [react-select-async-paginate](https://www.npmjs.com/package/react-select-async-paginate). I wanted to try and work with already existing components to see how well I would do and my conclusion is that sometimes it's easier to reinvent the wheel. The search bar gave one error I couldn't really solve. Sometimes it works and sometimes it doesn't I don't know really.

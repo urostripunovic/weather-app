@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ICON_MAP, dayOrNightCodes } from "./iconMap";
+import { ICON_MAP, FORECAST_MAP, dayOrNightCodes } from "./iconMap";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const OWM_URL = import.meta.env.VITE_OPEN_WEATHER_MAP_URL;
@@ -70,6 +70,7 @@ function parseCurrentWeather({ current_weather, daily, hourly }, data_OWM) {
         description: data_OWM.weather[0].main,
         humidity: data_OWM.main.humidity,
         iconCode: parseIcon(weathercode, is_day),
+        forecastCode: parseForeCastIcon(weathercode, is_day),
         UV: parseUvIndex(currUv),
         currentTemp: Math.round(temperature),
         windSpeed: Math.round(windspeed),
@@ -144,6 +145,11 @@ function parseIcon(iconCode, is_day) {
     if (dayOrNightCodes.includes(iconCode)) return ICON_MAP.get(iconCode) + (is_day === 1 ? "-sun" : "-moon");
 
     return ICON_MAP.get(iconCode);
+}
+
+function parseForeCastIcon(iconCode, is_day) {
+    if (dayOrNightCodes.includes(iconCode)) return FORECAST_MAP.get(iconCode) + (is_day === 1 ? "day" : "night");
+    return FORECAST_MAP.get(iconCode);
 }
 
 function parseUvIndex(index) {
