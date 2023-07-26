@@ -16,6 +16,18 @@
     background-position: 55% 50%;
 }
 
+.image-cloudySkyday {
+    background-image: url("/forecast/cloudySky.jpg");
+    background-position: 55% 50%;
+}
+
+.image-cloudySkynight {
+    background-size: 700px;
+    background-image: url("/forecast/cloudySkynight.jpg");
+    background-position: 0% 5%;
+}
+
+
 .image-clouds {
     background-image: url("/forecast/clouds.jpg");
     background-position: 50% 55%;

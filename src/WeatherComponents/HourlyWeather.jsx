@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './HourlyWeather.css'
 
 export default function HourlyWeather({ data }) {
@@ -19,7 +19,7 @@ export default function HourlyWeather({ data }) {
         //Logik här
         if (!isDragging) return;
         const scrollSpeed = 1;
-        const clientX = e.clientX || e.touches[0].clientX;
+        const clientX = e.clientX ? e.clientX : (e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0); //solve the error of having the touches throw erros
         const x = clientX - slider.current.offsetLeft;
         const scroll = (x - startX) * scrollSpeed;
         slider.current.scrollLeft = scrollLeft - scroll;
@@ -29,18 +29,26 @@ export default function HourlyWeather({ data }) {
         setIsDragging(false);
     }
 
+    useEffect(() => {
+        document.addEventListener('mousemove', handleDrag);
+        document.addEventListener('mouseup', handleDragEnd);
+        document.addEventListener('touchmove', handleDrag);
+        document.addEventListener('touchend', handleDragEnd);
+
+        return () => {
+            document.removeEventListener('mousemove', handleDrag);
+            document.removeEventListener('mouseup', handleDragEnd);
+            document.removeEventListener('touchmove', handleDrag);
+            document.removeEventListener('touchend', handleDragEnd);
+        };
+    }, [isDragging]);
+
     return (
         <div
             ref={slider}
             className='hour-border'
             onMouseDown={handleDragStart}
-            onMouseMove={handleDrag}
-            onMouseUp={handleDragEnd}
-            onMouseLeave={handleDragEnd}
             onTouchStart={handleDragStart}
-            onTouchMove={handleDrag}
-            onTouchEnd={handleDragEnd}
-            onTouchCancel={handleDragEnd}
         >
             {data.map((forecast, index) => {
                 //console.log(forecast, index)
@@ -50,13 +58,13 @@ export default function HourlyWeather({ data }) {
                         <img
                             className='hour-img'
                             src={`/icons/${forecast.iconCode}.png`}
-                            alt="weather" 
+                            alt="weather"
                         />
                         <div className='hour-temp'>
                             {forecast.temp}°
                         </div>
                         <div className='hour-prob'>
-                            <img className='tear-drop' src='/tear-drop.png'/>
+                            <img className='tear-drop' src='/tear-drop.png' />
                             {forecast.prob}%
                         </div>
                     </div>
