@@ -120,9 +120,9 @@ function parseDailyWeather({ daily }) {
 
     return daily.time.map((time, index) => {
         return {
-            time: parseDay(time * 1000),
+            weekday: parseDay(time * 1000),
             prob: precipitation_probability_max[index],
-            iconCode: parseIcon(weathercode[index]),
+            iconCode: parseIcon(weathercode[index], 1),
             day: Math.round(temperature_2m_max[index]),
             night: Math.round(temperature_2m_min[index]),
         }

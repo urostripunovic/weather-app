@@ -1,0 +1,40 @@
+.hour-border {
+    padding: 10px 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    cursor: grab;
+    display: flex;
+    overflow: hidden;
+}
+
+.hour-border::-webkit-scrollbar {
+    display: none;
+}
+
+.hour-forecast {
+    text-align: center;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.hour-img {
+    height: 4rem;
+    filter: drop-shadow(0 0 5px rgba(23, 36, 50, .3));
+}
+
+.hour-temp {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.hour-prob {
+    text-align: center;
+}
+
+.tear-drop {
+    margin-right: 5px;
+    height: 1rem;
+}

@@ -20,9 +20,9 @@ A weather app powered by ReactJS using two weather APIs, [Open Weather Map](http
 - [ ] Create WeatherPage component
     - [x] CurrentWeather component
         - add images representing the clouds. One for a clear sky, kinda cloudy sky, cloudy sky and night sky. **more images could be added but I've understood how to solve this kind of problem in the future.**
-    - [ ] HourlyWeather component
-        - Create a "carousel" so that people are able to drag it to the left and right to see the comming 24hours.
-    - [ ] DailyWeather component
+    - [x] HourlyWeather component
+        - Create a ["carousel"](https://stackoverflow.com/questions/28576636/mouse-click-and-drag-instead-of-horizontal-scroll-bar-to-view-full-content-of-c) so that people are able to drag it to the left and right to see the comming 24hours.
+    - [x] DailyWeather component
         - Just a small table of value showing, the weekly forecast.
     - [ ] CurrentOtherStuff component
         - Showing the uv index and such.
