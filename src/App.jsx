@@ -13,21 +13,17 @@ const App = () => {
   const [cityError, setError] = useState(null);
 
   /* Geolocation of the user or their current timezone */
-  const start = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const city = start.split('/')[1]
-  const positionSuccess = async ({ coords }) => {
-    const lonLat = {lon: coords.longitude, lat: coords.latitude};
-    const city = await getCurrentLocation(lonLat)
-    fetchData(city)
-  }
-
-  const positionError = (city) => {
-    fetchData(city);
-  }
-
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(positionSuccess, () => positionError(city));
-  }, [city]);
+    const start = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const city = start.split('/')[1]
+    navigator.geolocation.getCurrentPosition(
+      async ({ coords }) => {
+        const lonLat = { lon: coords.longitude, lat: coords.latitude };
+        const city = await getCurrentLocation(lonLat)
+        fetchData(city)
+      },
+      () => fetchData(city));
+  }, []);
 
 
   const handleSearch = async (city) => {
