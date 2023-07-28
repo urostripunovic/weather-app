@@ -3,7 +3,7 @@ import WeatherPage from "./WeatherPage"
 import Search from "./Search";
 import CityError from "./CityError";
 import LoadingScreen from "./LoadingScreen";
-import { getCity, getForecast } from "./weather";
+import { getCity, getForecast, getCurrentLocation } from "./weather";
 import "./App.css";
 
 const App = () => {
@@ -12,9 +12,23 @@ const App = () => {
   const [isFetched, setFetched] = useState(false);
   const [cityError, setError] = useState(null);
 
+  /* Geolocation of the user or their current timezone */
   const start = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const city = start.split('/')[1]
-  useEffect(() => { fetchData(city);}, [city]);
+  const positionSuccess = async ({ coords }) => {
+    const lonLat = {lon: coords.longitude, lat: coords.latitude};
+    const city = await getCurrentLocation(lonLat)
+    fetchData(city)
+  }
+
+  const positionError = (city) => {
+    fetchData(city);
+  }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(positionSuccess, () => positionError(city));
+  }, [city]);
+
 
   const handleSearch = async (city) => {
     const name = city.label.split(',')[0];
@@ -49,6 +63,5 @@ const App = () => {
     </div>
   )
 }
-
 
 export default App

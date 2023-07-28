@@ -4,6 +4,26 @@ import { ICON_MAP, FORECAST_MAP, dayOrNightCodes } from "./iconMap";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const OWM_URL = import.meta.env.VITE_OPEN_WEATHER_MAP_URL;
 const OM_URL = import.meta.env.VITE_OPEN_METEO_URL;
+const REVERSE_GEO_URL = import.meta.env.VITE_REVERSE_GEO_URL;
+const REVERSE_GEO_API_KEY = import.meta.env.VITE_API_KEY_REVERSE_GEO;
+
+export async function getCurrentLocation (lonLat) {
+    const {lon, lat} = lonLat
+    try {
+        const response = await axios.get(`${REVERSE_GEO_URL}`, {
+            params: {
+                lat: lat,
+                lon: lon,
+                apiKey: REVERSE_GEO_API_KEY,
+            },
+        }).catch(() => console.log("ett fel har uppståt"))
+        const { data } = response;
+        //console.log(data.results[0].city)
+        return data.results[0].city;
+    } catch (error) {
+        throw new Error("Something went wrong with reversing the geolocation");
+    }
+}
 
 export async function getCity(city) {
     try {
