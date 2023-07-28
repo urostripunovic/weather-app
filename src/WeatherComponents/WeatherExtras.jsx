@@ -2,7 +2,7 @@ import React from 'react'
 import './WeatherExtras.css';
 
 export default function WeatherExtras({ data }) {
-    console.log(data);
+    //console.log(data);
     return (
         <div className='extras-container'>
             <div className='extra-border '>
@@ -20,7 +20,7 @@ export default function WeatherExtras({ data }) {
                 <div className='head-text'> Wind </div>
                 <div className='text-values'> {data.windSpeed} km/h </div>
             </div>
-            <div className='extra-border test-ngt'>
+            <div className='extra-border fkn-css'>
                 <div className='set-rise-text'>
                     <span className='set-rise-text weight'>
                         Sunrise:

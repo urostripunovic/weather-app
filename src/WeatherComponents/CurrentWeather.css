@@ -29,6 +29,11 @@
 }
 
 
+.image-cloudsday {
+    background-image: url("/forecast/clouds.jpg");
+    background-position: 50% 55%;
+}
+
 .image-clouds {
     background-image: url("/forecast/clouds.jpg");
     background-position: 50% 55%;

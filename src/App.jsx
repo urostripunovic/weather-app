@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WeatherPage from "./WeatherPage"
 import Search from "./Search";
 import CityError from "./CityError";
@@ -7,14 +7,38 @@ import { getCity, getForecast } from "./weather";
 import "./App.css";
 
 const App = () => {
-
   const [data, setData] = useState(null);
-
+  
   const [isLoading, setLoading] = useState(false);
   const [isFetched, setFetched] = useState(false);
-
+  
   const [cityError, setError] = useState(null);
-  const [movedUp, setMovedUp] = useState(false);
+  
+  const start = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const city = start.split('/')[1]
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const city_data = await getCity(city);
+        const forecast_data = await getForecast(city_data);
+        setFetched(true);
+        setData(forecast_data);
+      } catch (error) {
+        setFetched(false);
+        setError(true);
+        console.log(error);
+      } finally {
+        setLoading(false)
+      }
+    };
+
+    fetchData();
+  }, [city]);
+
+  //console.log(city)
+
 
   const handleSearch = async (city) => {
     const name = city.label.split(',')[0];
@@ -28,7 +52,6 @@ const App = () => {
       const forecast_data = await getForecast(city_data);
       setFetched(true);
       setData(forecast_data);
-      setMovedUp(true);
     } catch (err) {
       setFetched(false);
       setError(true)
@@ -42,7 +65,7 @@ const App = () => {
 
   return (
     <div className="parent-container">
-      <div className={`container ${movedUp ? 'moved-up' : ''}`}>
+      <div className={`container`}>
         <Search onSearchChange={handleSearch} />
         <div className="content">
           {isLoading ? <LoadingScreen /> : isFetched ? <WeatherPage data={data} /> : cityError && <CityError />}

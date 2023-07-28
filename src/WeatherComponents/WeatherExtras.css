@@ -5,7 +5,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     text-align: center;
     filter: drop-shadow(0 0 5px rgba(23, 36, 50, .3));
 }
@@ -14,6 +13,10 @@
     padding: 20px 35px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 6px;
+    flex-grow: 1;
+    margin-right: 10px;
+    height: 100%;
+    margin-bottom: 10px;
 }
 
 .head-text {
@@ -32,6 +35,7 @@
 
 .set-rise-text {
     font-size: 1.1rem;
+    margin-bottom: 1.5px;
 }
 
 .set-rise-text.weight {
@@ -40,6 +44,10 @@
 
 .set-rise-text.opacity {
     opacity: 0.7;
+}
+
+.fkn-css {
+    margin-right: 0px;
 }
 
 

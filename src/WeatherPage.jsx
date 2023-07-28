@@ -6,7 +6,7 @@ import "./WeatherPage.css";
 import WeatherExtras from './WeatherComponents/WeatherExtras';
 
 const WeatherPage = ({ data }) => {
-    console.log(data)
+    //console.log(data)
 
     const { current, hourly, daily } = data;
 

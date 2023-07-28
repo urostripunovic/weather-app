@@ -10,16 +10,11 @@
     position: absolute;
     max-width: 700px;
     width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30px;
+    /*top: 50%;
+    transform: translateY(-50%);*/
     opacity: 1;
     transition: all 0.5s ease;
-}
-
-.container.moved-up {
-    position: absolute;
-    top: 30px;
-    opacity: 0.8;
 }
 
 .content {
