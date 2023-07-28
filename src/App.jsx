@@ -8,47 +8,24 @@ import "./App.css";
 
 const App = () => {
   const [data, setData] = useState(null);
-  
   const [isLoading, setLoading] = useState(false);
   const [isFetched, setFetched] = useState(false);
-  
   const [cityError, setError] = useState(null);
-  
+
   const start = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const city = start.split('/')[1]
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const city_data = await getCity(city);
-        const forecast_data = await getForecast(city_data);
-        setFetched(true);
-        setData(forecast_data);
-      } catch (error) {
-        setFetched(false);
-        setError(true);
-        console.log(error);
-      } finally {
-        setLoading(false)
-      }
-    };
-
-    fetchData();
-  }, [city]);
-
-  //console.log(city)
-
+  useEffect(() => { fetchData(city);}, [city]);
 
   const handleSearch = async (city) => {
     const name = city.label.split(',')[0];
-
     if (data && (data.current.name === name)) return;
+    fetchData(name)
+  }
 
+  const fetchData = async (city) => {
     try {
       setLoading(true);
-
-      const city_data = await getCity(name);
+      const city_data = await getCity(city);
       const forecast_data = await getForecast(city_data);
       setFetched(true);
       setData(forecast_data);
@@ -61,11 +38,9 @@ const App = () => {
     }
   }
 
-  //Hämta datan som skall in i weather page som ändras från search field, prop drilling.
-
   return (
     <div className="parent-container">
-      <div className={`container`}>
+      <div className='container'>
         <Search onSearchChange={handleSearch} />
         <div className="content">
           {isLoading ? <LoadingScreen /> : isFetched ? <WeatherPage data={data} /> : cityError && <CityError />}

@@ -51,7 +51,6 @@ export default function HourlyWeather({ data }) {
             onTouchStart={handleDragStart}
         >
             {data.map((forecast, index) => {
-                //console.log(forecast, index)
                 return (
                     <div className='hour-forecast' key={index}>
                         {forecast.time}

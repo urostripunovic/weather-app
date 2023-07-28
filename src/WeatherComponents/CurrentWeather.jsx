@@ -2,7 +2,6 @@ import React from 'react'
 import './CurrentWeather.css';
 
 export default function CurrentWeather({ data }) {
-    //console.log(data);
     return (
         <div className={`curr-border image-${data.forecastCode}`}>
             <div className='curr-img-container'>

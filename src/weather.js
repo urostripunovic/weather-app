@@ -4,9 +4,6 @@ import { ICON_MAP, FORECAST_MAP, dayOrNightCodes } from "./iconMap";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const OWM_URL = import.meta.env.VITE_OPEN_WEATHER_MAP_URL;
 const OM_URL = import.meta.env.VITE_OPEN_METEO_URL;
-//const city = "malmö"
-const GEO_URL = import.meta.env.VITE_GEO_URL;
-const API_KEY_GEO = import.meta.env.VITE_API_KEY_GEO_DB;
 
 export async function getCity(city) {
     try {
@@ -19,7 +16,6 @@ export async function getCity(city) {
         const { data } = response_OWM;
         return data;
     } catch (error) {
-        //alert("There is no forecast for this city try another");
         throw new Error("Something went wrong with finding the city");
     }
 }
@@ -34,7 +30,6 @@ export async function getForecast(data_OWM) {
             },
         });
         const { data } = response_OM;
-        //console.log("getForecast function ", data)
         return {
             current: parseCurrentWeather(data, data_OWM),
             hourly: parseHourlyWeather(data),
@@ -118,8 +113,6 @@ function parseDailyWeather({ daily }) {
         temperature_2m_min,
     } = daily;
 
-    //const dates = parseDay(daily.time);
-
     return daily.time.map((time, index) => {
         return {
             weekday: parseDay(time * 1000),
@@ -137,8 +130,6 @@ function parseTime(time) {
 }
 
 function parseDay(time) {
-    //const dates = times.map(time => new Date(time*1000).toLocaleDateString("en-US", { weekday: "long" }));
-    //dates[0] = "Today"; //unavoidable hard coding
     const date = new Date(time);
     return date.toLocaleDateString("en-US", { weekday: "long" });
 }
@@ -155,14 +146,9 @@ function parseForeCastIcon(iconCode, is_day) {
 }
 
 function parseUvIndex(index) {
-    if (index < 2)
-        return "Low";
-    else if (index < 6)
-        return "Moderate";
-    else if (index < 8)
-        return "High";
-    else if (index < 10)
-        return "Very High";
-    else
-        return "Extremly High";
+    if (index < 2) return "Low";
+    else if (index < 6) return "Moderate";
+    else if (index < 8) return "High";
+    else if (index < 10) return "Very High";
+    else return "Extremly High";
 }

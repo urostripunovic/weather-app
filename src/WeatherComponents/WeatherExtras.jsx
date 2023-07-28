@@ -2,7 +2,6 @@ import React from 'react'
 import './WeatherExtras.css';
 
 export default function WeatherExtras({ data }) {
-    //console.log(data);
     return (
         <div className='extras-container'>
             <div className='extra-border '>
