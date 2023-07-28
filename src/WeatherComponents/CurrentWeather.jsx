@@ -27,7 +27,7 @@ export default function CurrentWeather({ data }) {
             </div>
 
             <div className='day-night'>
-                Day {data.day}° • Night {data.night}° feels like {data.feelsLike}°
+                Day {data.day}° • Night {data.night}° Feels like {data.feelsLike}°
             </div>
 
         </div>

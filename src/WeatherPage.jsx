@@ -1,8 +1,9 @@
 import React from 'react'
-import "./WeatherPage.css";
 import CurrentWeather from './WeatherComponents/CurrentWeather';
 import HourlyWeather from './WeatherComponents/HourlyWeather';
 import DailyWeather from './WeatherComponents/DailyWeather';
+import "./WeatherPage.css";
+import WeatherExtras from './WeatherComponents/WeatherExtras';
 
 const WeatherPage = ({ data }) => {
     console.log(data)
@@ -14,7 +15,7 @@ const WeatherPage = ({ data }) => {
             <CurrentWeather data={current} />
             <HourlyWeather data={hourly} />
             <DailyWeather data={daily} />
-            {/*Sista kvar sen css*/}
+            <WeatherExtras data={current.extras} />
         </div>
     );
 };

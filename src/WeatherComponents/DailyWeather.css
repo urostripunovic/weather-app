@@ -10,7 +10,6 @@
     flex-direction: row;
     justify-content: space-between;
     flex-basis: content;
-    margin-right: 10px;
     font-size: 1.2rem;
     flex-wrap: wrap;
 }
@@ -23,6 +22,11 @@
     height: 2.5rem;
     filter: drop-shadow(0 0 5px rgba(23, 36, 50, .3));
     margin-right: 10px;
+}
+
+.tear-drop-daily {
+    margin-right: 10px;
+    height: 1rem;
 }
 
 .text-weight {

@@ -68,17 +68,19 @@ function parseCurrentWeather({ current_weather, daily, hourly }, data_OWM) {
     return {
         name: data_OWM.name,
         description: data_OWM.weather[0].main,
-        humidity: data_OWM.main.humidity,
         iconCode: parseIcon(weathercode, is_day),
         forecastCode: parseForeCastIcon(weathercode, is_day),
-        UV: parseUvIndex(currUv),
         currentTemp: Math.round(temperature),
-        windSpeed: Math.round(windspeed),
         day: Math.round(day),
         night: Math.round(night),
         feelsLike: Math.round(feelsLikeCurr),
-        sunRise: parseTime(sunRise * 1000),
-        sunSet: parseTime(sunSet * 1000),
+        extras: {
+            humidity: data_OWM.main.humidity,
+            UV: parseUvIndex(currUv),
+            windSpeed: Math.round(windspeed),
+            sunRise: parseTime(sunRise * 1000),
+            sunSet: parseTime(sunSet * 1000),
+        },
     };
 }
 

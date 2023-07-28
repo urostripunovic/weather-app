@@ -18,7 +18,7 @@ export default function HourlyWeather({ data }) {
     const handleDrag = (e) => {
         //Logik här
         if (!isDragging) return;
-        const scrollSpeed = 1;
+        const scrollSpeed = 0.8;
         const clientX = e.clientX ? e.clientX : (e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0); //solve the error of having the touches throw erros
         const x = clientX - slider.current.offsetLeft;
         const scroll = (x - startX) * scrollSpeed;

@@ -17,14 +17,14 @@ A weather app powered by ReactJS using two weather APIs, [Open Weather Map](http
     - [x] Mapping of UV-index values
 - [x] Create a loading function
 - [x] Create an error handler
-- [ ] Create WeatherPage component
+- [x] Create WeatherPage component
     - [x] CurrentWeather component
         - add images representing the clouds. One for a clear sky, kinda cloudy sky, cloudy sky and night sky. **more images could be added but I've understood how to solve this kind of problem in the future.**
     - [x] HourlyWeather component
         - Create a ["carousel"](https://stackoverflow.com/questions/28576636/mouse-click-and-drag-instead-of-horizontal-scroll-bar-to-view-full-content-of-c) so that people are able to drag it to the left and right to see the comming 24hours.
     - [x] DailyWeather component
         - Just a small table of value showing, the weekly forecast.
-    - [ ] CurrentOtherStuff component
+    - [x] CurrentOtherStuff component
         - Showing the uv index and such.
 - [x] LandingPage component (could just be a search button idk yet)
     - [x] Lets one choose their current gps location or has a "auto" complete feature with every city that exists.
@@ -32,7 +32,8 @@ A weather app powered by ReactJS using two weather APIs, [Open Weather Map](http
     - [x] Sends the city name into the WeatherPage component
 
 ### COULD BE TODO's
-- [ ] Create dark mode for the page if it is night **prep is already done**
+- [ ] ~~Create dark mode for the page if it is night **prep is already done**~~
+- [ ] Create gradient dependent on the forecast image, change text color as well.
 - [x] Only update the component if it's a new city. **Thought it was going to be harder than expected, I tried using ref and memo but all that was required was just to see if `data.current.name` was the same as the search field if it was then just return, no need for fancy solutions when a simple line like this `if (data && (data.current.name === name)) return;` was enough.**
 
 #### BUGS

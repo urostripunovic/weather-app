@@ -13,16 +13,17 @@
 
 .image-cloudySky {
     background-image: url("/forecast/cloudySky.jpg");
-    background-position: 55% 50%;
+    background-position: 55% 90%;
+    background-size: 700px;
 }
 
 .image-cloudySkyday {
     background-image: url("/forecast/cloudySky.jpg");
-    background-position: 55% 50%;
+    background-position: 55% 90%;
+    background-size: 700px;
 }
 
 .image-cloudySkynight {
-    background-size: 700px;
     background-image: url("/forecast/cloudySkynight.jpg");
     background-position: 0% 5%;
 }

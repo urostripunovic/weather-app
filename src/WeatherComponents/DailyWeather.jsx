@@ -11,7 +11,7 @@ export default function DailyWeather({ data }) {
                             {forecast.weekday}
                         </span>
                         <span className='text-alligment flex-patch'>
-                            <img className='tear-drop text-alligment' src='/tear-drop.png' />
+                            <img className='tear-drop-daily text-alligment' src='/tear-drop.png' />
                             {forecast.prob}%
                         </span>
 

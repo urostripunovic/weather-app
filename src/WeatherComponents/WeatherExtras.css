@@ -1,0 +1,45 @@
+.extras-container {
+    margin-bottom: 20px;
+    cursor: default;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    filter: drop-shadow(0 0 5px rgba(23, 36, 50, .3));
+}
+
+.extra-border {
+    padding: 20px 35px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 6px;
+}
+
+.head-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.text-values {
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+.image-size {
+    height: 5rem;
+}
+
+.set-rise-text {
+    font-size: 1.1rem;
+}
+
+.set-rise-text.weight {
+    font-weight: 600;
+}
+
+.set-rise-text.opacity {
+    opacity: 0.7;
+}
+
+

@@ -30,7 +30,7 @@ const App = () => {
       setData(forecast_data);
       setMovedUp(true);
     } catch (err) {
-      setFetched(false); 
+      setFetched(false);
       setError(true)
       console.log(err)
     } finally {
