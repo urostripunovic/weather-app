@@ -156,7 +156,6 @@ function parseDay(time) {
 
 function parseIcon(iconCode, is_day) {
     if (dayOrNightCodes.includes(iconCode)) return ICON_MAP.get(iconCode) + (is_day === 1 ? "-sun" : "-moon");
-
     return ICON_MAP.get(iconCode);
 }
 
