@@ -15,7 +15,7 @@
     - [x] CurrentWeather component
         - add images representing the clouds. One for a clear sky, kinda cloudy sky, cloudy sky and night sky. **more images could be added but I've understood how to solve this kind of problem in the future.**
     - [x] HourlyWeather component
-        - Create a ["carousel"](https://stackoverflow.com/questions/28576636/mouse-click-and-drag-instead-of-horizontal-scroll-bar-to-view-full-content-of-c) so that people are able to drag it to the left and right to see the comming 24hours.
+        - Create a ["carousel"](https://stackoverflow.com/questions/28576636/mouse-click-and-drag-instead-of-horizontal-scroll-bar-to-view-full-content-of-c) so that people are able to drag it to the left and right to see the comming 24hours. There is also a ready [package](https://github.com/Norserium/react-indiana-drag-scroll/blob/master/src/index.tsx) that exits as well but changed it to match my code.
     - [x] DailyWeather component
         - Just a small table of value showing, the weekly forecast.
     - [x] CurrentOtherStuff component
